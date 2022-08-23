@@ -85,7 +85,8 @@ EmailModel.find({
 ## Find one record
 
 - _Model.findOne()_ behaves like _Model.find()_, but it returns only document (not an array), even if there are multiple items. It is especially useful when searching by properties that you have declared as unique.
-- _Model.findById()_ will search a record by its _\_id_
+- _Model.findById()_ will search a record by its _\_id_. It equivalents to _Model.findOne()_
+- _Model.findOne()_ is a `potentially-null single document`
 
 ## Update one record
 
@@ -98,3 +99,27 @@ EmailModel.find({
 ## Remove many records
 
 - _Model.remove()_ will remove records that meet the certain criteria.
+
+## Chain search query helpers
+
+- A mongoose query can be executed in one of two ways:
+
+  - `callback`
+  - `.then()`
+
+- With the chaining syntax, query helper functions can be chained together to build up a query. And, it will be executed when the last chained function is `.exec()` with `callback` or `.then()`
+
+```js
+Person.find({ occupation: /host/ })
+  .where('name.last')
+  .equals('Ghost')
+  .where('age')
+  .gt(17)
+  .lt(66)
+  .where('likes')
+  .in(['vaporizing', 'talking'])
+  .limit(10)
+  .sort('-occupation')
+  .select('name occupation')
+  .exec(callback);
+```
