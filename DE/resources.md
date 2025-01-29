@@ -1,0 +1,2 @@
+- [Modern Data Stack](https://www.datafold.com/blog/the-modern-data-stack-open-source-edition#elements-of-the-modern-data-stack)
+- [Evolution of data architecture](https://www.youtube.com/watch?v=UAJTqDVmuGM)
